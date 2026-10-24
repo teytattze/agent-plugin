@@ -1,22 +1,25 @@
 ---
 name: project-docs
-description: Write, update, or review a repo's AGENTS.md, README.md, and PRODUCT.md using a fixed, lean section convention. Use when creating or editing any of these files, bootstrapping project docs, restructuring existing docs, or deciding which file a piece of project information belongs in.
+description: Write, update, or review a repo's AGENTS.md, README.md, PRODUCT.md, and optional doc/engineering/ rule files using a fixed, lean section convention. Use when creating or editing any of these files, bootstrapping project docs, restructuring existing docs, or deciding which file a piece of project information belongs in.
 ---
 
 # Project docs
 
-Three files, one reader each. Every fact lives in exactly one file. The others link to it.
+Three files, one reader each, plus optional engineering rule files. Every fact lives in exactly one file. The others link to it.
 
 | File | Reader | Sections, in this order |
 |---|---|---|
 | `PRODUCT.md` | Someone deciding what to build | Problem · Assumption · Solution · Reference |
 | `README.md` | A person getting the project running | Overview · Project Setup · Command · Reference |
 | `AGENTS.md` | A coding agent working in the repo | Structure · Rule · Reference |
+| `doc/engineering/AGENTS.md` (optional) | A coding agent looking for a rule | Index |
+| `doc/engineering/<topic>.md` (optional) | A coding agent applying a rule | Rule · Reference |
 
 ## Placement
 
 - `PRODUCT.md` lives only at the repo root. There is one per repo.
 - `README.md` and `AGENTS.md` live at the root and may also be nested in any directory that needs its own. A nested file covers only its directory's subtree. It inherits everything from its parents and links up instead of repeating them.
+- `doc/engineering/` lives only at the repo root. Create it only when design, code-style, or convention rules outgrow the Rule sections of `AGENTS.md`.
 
 Each section is a `##` heading with exactly that name. Add no other sections. If a section has nothing true to say yet, write `None.` under it.
 
@@ -37,10 +40,18 @@ Each section is a `##` heading with exactly that name. Add no other sections. If
 ## AGENTS.md
 
 - **Structure**: one line per path, saying what lives there. List only what an agent couldn't guess from the names.
-- **Rule**: conventions and constraints an agent would get wrong unless told. Write each as a one-line imperative.
-- **Reference**: links to README.md, PRODUCT.md, and external docs. Don't copy their content.
+- **Rule**: conventions and constraints an agent would get wrong unless told. Write each as a one-line imperative. When `doc/engineering/` exists, a rule that fits one of its topics goes there instead.
+- **Reference**: links to README.md, PRODUCT.md, and external docs. Don't copy their content. When `doc/engineering/` exists, every `AGENTS.md` links to `doc/engineering/AGENTS.md` here.
 
 Next to every `AGENTS.md`, root or nested, there must be a `CLAUDE.md` that contains only `@AGENTS.md`, so Claude Code loads it. If it's missing, create it.
+
+## doc/engineering/
+
+- `AGENTS.md` is an index only. **Index**: one line per rule file, `[<topic>.md](<topic>.md)`, then what it covers. No rules here.
+- Each `<topic>.md` covers one topic, such as `code-style.md`, `error-handling.md`, or `api-design.md`. Name it after the topic.
+- **Rule**: one-line imperatives. Add a short code example only when the rule is unclear without one.
+- **Reference**: links only.
+- Adding, renaming, or removing a rule file means updating the index in the same change.
 
 ## Rules
 
