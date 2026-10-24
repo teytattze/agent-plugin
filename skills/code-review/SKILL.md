@@ -14,7 +14,7 @@ What to review, unless the user names something else: the current branch's chang
 Read the `project-docs` skill first. It says which file owns which rules.
 
 **Conventions**
-- Read the root `AGENTS.md` and every nested `AGENTS.md` on the path to each changed file. If `doc/engineering/AGENTS.md` exists, read it and every rule file it lists that touches the change. Check the change against their Rule sections.
+- Read the root `AGENTS.md` and every nested `AGENTS.md` on the path to each changed file. Read the root `doc/engineering/AGENTS.md` and, in a monorepo, the one in each changed file's app, if they exist. Read every rule file they list that touches the change. Check the change against their Rule sections.
 - Flag only real violations of a written rule, and quote the rule. Taste is not a finding.
 
 **Simplicity**
