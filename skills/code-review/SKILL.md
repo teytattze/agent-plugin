@@ -11,8 +11,10 @@ What to review, unless the user names something else: the current branch's chang
 
 ## Checks
 
+Read the `project-docs` skill first. It says which file owns which rules.
+
 **Conventions**
-- Read the root `AGENTS.md` and every nested `AGENTS.md` on the path to each changed file. Check the change against their Rule sections.
+- Read the root `AGENTS.md` and every nested `AGENTS.md` on the path to each changed file. Read the root `doc/engineering/AGENTS.md` and, in a monorepo, the one in each changed file's app, if they exist. Read every rule file they list that touches the change. Check the change against their Rule sections.
 - Flag only real violations of a written rule, and quote the rule. Taste is not a finding.
 
 **Simplicity**
@@ -20,7 +22,7 @@ What to review, unless the user names something else: the current branch's chang
 - For each finding, name what replaces it.
 
 **Doc drift**
-- Flag changes that make README.md, AGENTS.md, or PRODUCT.md wrong: setup steps, commands, paths in Structure, rules the code now breaks, a changed Solution.
+- Flag changes that make README.md, AGENTS.md, PRODUCT.md, or a `doc/engineering/` file wrong: setup steps, commands, paths in Structure, rules the code now breaks, a changed Solution.
 - Flag changed docs that break the `project-docs` convention.
 - Name the file and section that needs updating.
 

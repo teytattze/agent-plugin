@@ -15,7 +15,8 @@ The skill's argument is the focus. Every sub-agent gets it and reports anything 
 
 ## Plan
 
-- List the top-level layout yourself (`git ls-files`, or the directory tree), and read the root `README.md` and `AGENTS.md` if present.
+- Read the `project-docs` skill. It says where the project docs live and what each one holds.
+- List the top-level layout yourself (`git ls-files`, or the directory tree), and read the root `README.md`, `AGENTS.md`, and `doc/engineering/AGENTS.md` if present.
 - Split the codebase into 3–6 independent areas: by top-level directory, package, or layer. Weight the split toward the focus.
 
 ## Spawn
@@ -24,6 +25,7 @@ The skill's argument is the focus. Every sub-agent gets it and reports anything 
 - Give each one only: its area's paths, the focus, and these instructions:
   - Read-only. Don't edit, run builds, or install anything.
   - Report what exists in the area: each notable file or directory with `path` and one line on what it is. Name entry points, public APIs, commands, data models, config, external dependencies, and tests.
+  - Name the area's `AGENTS.md` and `doc/engineering/` files, if any.
   - Report anything matching the focus in more detail.
   - Facts only, each with a `path` or `path:line`. No reasoning about why, no walkthroughs of how.
 - If an area comes back thin or contradicts another, spawn one more sub-agent for that gap. Don't loop more than once.
