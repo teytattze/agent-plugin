@@ -9,7 +9,7 @@ You orchestrate. Sub-agents design, review, and implement. Every step runs in a 
 
 ## Before starting
 
-- Run the `explore-codebase` skill with the request as its focus.
+- Run the `agent-plugin:explore-codebase` skill with the request as its focus.
 - Read the root `AGENTS.md` and any nested ones on the path.
 - Find the test command. Run the suite once. If it's already red, stop and tell the user.
 
@@ -31,11 +31,11 @@ Break the passed design into a sequence of waves. Each wave is a set of tasks th
 For each wave, in order:
 
 **IMPLEMENT** (1 sub-agent per task, in parallel)
-- Give each the request, the design, its task, the test command, and the relevant file paths. Have it run the `implement` skill on its task and report the files it changed and the suite output.
+- Give each the request, the design, its task, the test command, and the relevant file paths. Have it run the `agent-plugin:implement` skill on its task and report the files it changed and the suite output.
 - When all return, run the suite yourself. If it's red, send the failure to a new sub-agent for the task that caused it.
 
 **REVIEW** (sub-agent)
-- Have it run the `code-review` skill on the wave's changes, then address every finding and report what it changed.
+- Have it run the `agent-plugin:code-review` skill on the wave's changes, then address every finding and report what it changed.
 - Spawn a new review sub-agent after each fix. Loop until it reports no findings, then start the next wave.
 
 ## Rules
