@@ -15,7 +15,7 @@ The skill's argument is the focus. Every sub-agent gets it and reports anything 
 
 ## Plan
 
-- Read the `project-docs` skill. It says where the project docs live and what each one holds.
+- Read the `agent-plugin:project-docs` skill. It says where the project docs live and what each one holds.
 - List the top-level layout yourself (`git ls-files`, or the directory tree), and read the root `README.md`, `AGENTS.md`, and `doc/engineering/AGENTS.md` if present.
 - Split the codebase into 3–6 independent areas: by top-level directory, package, or layer. Weight the split toward the focus.
 

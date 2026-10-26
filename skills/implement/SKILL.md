@@ -9,7 +9,7 @@ Write the test, make it pass, get it reviewed, clean it up, get it reviewed agai
 
 ## Before starting
 
-- Run the `explore-codebase` skill with the request as its focus. Use its report to find the files, tests, and existing code the slices touch.
+- Run the `agent-plugin:explore-codebase` skill with the request as its focus. Use its report to find the files, tests, and existing code the slices touch.
 - Read the request and the code it touches. Read the root `AGENTS.md` and any nested ones on the path.
 - Find the test command. Run the suite once. If it's already red, stop and tell the user.
 - Split the work into slices: one observable behavior each. Run the cycle once per slice.
@@ -40,7 +40,7 @@ Write the test, make it pass, get it reviewed, clean it up, get it reviewed agai
 - The whole suite must stay green.
 
 **REVIEW** (sub-agent, quality)
-- Have it run the `code-review` skill on the diff. Findings only, no edits.
+- Have it run the `agent-plugin:code-review` skill on the diff. Findings only, no edits.
 - Real findings: back to REFACTOR with them. Clear: start the next slice.
 
 ## Rules
