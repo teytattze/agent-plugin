@@ -15,6 +15,8 @@ Three files, one reader each, plus engineering rule files. Every fact lives in e
 | `doc/engineering/AGENTS.md` | A coding agent looking for a rule | Index |
 | `doc/engineering/<topic>.md` | A coding agent applying a rule | Rule · Reference |
 
+To create a file, start from its template in `references/`, at the same relative path (`doc/engineering/topic.md` for a topic file). Replace every `<placeholder>`, and fix the links for nested files.
+
 ## Placement
 
 - `PRODUCT.md` lives only at the repo root. There is one per repo.
@@ -48,9 +50,10 @@ Next to every `AGENTS.md`, root or nested, there must be a `CLAUDE.md` that cont
 
 ## doc/engineering/
 
-- `AGENTS.md` is an index only. **Index**: one line per rule file, `[<topic>.md](<topic>.md)`, then what it covers. No rules here.
-- An app's index starts with a line linking to the root index.
+- `AGENTS.md` is an index only. **Index**: a table with columns File · Paths · Description, one row per rule file. File links to `[<topic>.md](<topic>.md)`. Paths lists one or more globs the rules apply to, comma-separated, such as `src/api/**`, `test/api/**`, or `**` for everything. Description says what the file covers in a few words. No rules here.
+- An app's index starts with a line linking to the root index, above the table.
 - Each `<topic>.md` covers one topic, such as `code-style.md`, `error-handling.md`, or `api-design.md`. Name it after the topic.
+- Each `<topic>.md` starts with YAML frontmatter, `paths:`, listing the globs its rules apply to. Its row in the index lists the same globs.
 - **Rule**: one-line imperatives. Add a short code example only when the rule is unclear without one.
 - **Reference**: links only.
 - An app's `<topic>.md` holds only rules that add to or override the root's file of the same name. Where they conflict, the app's rule wins inside that app.
