@@ -1,5 +1,5 @@
 ---
-name: pr
+name: write-pr-body
 description: "Use when writing a PR body."
 ---
 
