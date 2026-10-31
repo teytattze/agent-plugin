@@ -1,8 +1,6 @@
 ---
 name: explore-codebase
 description: Map what a codebase contains by splitting it into areas, exploring each in a parallel Haiku sub-agent, and merging their reports, with a path on every finding. Covers what exists and where, not why it was built that way or how it works internally. Use when asked to explore, map, survey, or get oriented in a codebase, optionally with a focus area given as the argument.
-model: claude-sonnet-5-5
-effort: high
 ---
 
 # Explore codebase
