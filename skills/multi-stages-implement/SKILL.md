@@ -1,6 +1,6 @@
 ---
 name: multi-stages-implement
-description: Implement a large feature in stages: the `plan-code-changes` skill plans it, then the work runs as waves of parallel tasks, each task through the `implement` skill and each wave through `code-review`. Use when a request is too big for one `implement` run, or when the user says "multi-stage", "waves", or "plan then implement".
+description: Implement a large feature in stages: the work runs as waves of parallel tasks, each task through the `implement` skill and each wave through `code-review`. Use when a request is too big for one `implement` run, or when the user says "multi-stage", "waves", or "plan then implement".
 ---
 
 # Multi-stages implement
@@ -9,19 +9,20 @@ You orchestrate. Sub-agents implement and review. Every step runs in a new, fres
 
 ## Before starting
 
-- Run the `agent-plugin:plan-code-changes` skill on the request. If the plan has open questions, stop and ask the user.
+- Run the `agent-plugin:explore-codebase` skill with the request as its focus.
+- Read the root `AGENTS.md` and any nested ones on the path.
 - Find the test command. Run the suite once. If it's already red, stop and tell the user.
 
 ## Waves
 
-Break the plan's steps into a sequence of waves. Each wave is a set of tasks that:
+Break the request into a sequence of waves. Each wave is a set of tasks that:
 - can run in parallel: no task needs another task in the same wave, and no two tasks touch the same files;
 - depend only on earlier waves.
 
 For each wave, in order:
 
 **IMPLEMENT** (1 sub-agent per task, in parallel)
-- Give each the request, the plan, its task, the test command, and the relevant file paths. Have it run the `agent-plugin:implement` skill on its task and report the files it changed and the suite output.
+- Give each the request, its task, the test command, and the relevant file paths. Have it run the `agent-plugin:implement` skill on its task and report the files it changed and the suite output.
 - When all return, run the suite yourself. If it's red, send the failure to a new sub-agent for the task that caused it.
 
 **REVIEW** (sub-agent)
