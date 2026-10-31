@@ -22,6 +22,7 @@ Break the request into a sequence of waves. Each wave is a set of tasks that:
 For each wave, in order:
 
 **IMPLEMENT** (1 sub-agent per task, in parallel)
+- Spawn each with `model: "opus"` and `effort: "medium"`.
 - Give each the request, its task, the test command, and the relevant file paths. Have it run the `agent-plugin:implement` skill on its task and report the files it changed and the suite output.
 - When all return, run the suite yourself. If it's red, send the failure to a new sub-agent for the task that caused it.
 
