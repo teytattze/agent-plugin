@@ -41,7 +41,7 @@ Write the test, make it pass, get it reviewed, clean it up, get it reviewed agai
 
 **REVIEW** (sub-agent, quality)
 - Have it run the `agent-plugin:code-review` skill on the diff. Findings only, no edits.
-- Real findings: back to REFACTOR with them. Clear: start the next slice.
+- Real findings: bugs back to GREEN, the rest to REFACTOR. Clear: start the next slice.
 
 ## Rules
 
