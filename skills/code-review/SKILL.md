@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: Review a diff against the repo's own conventions, for over-engineering, and for docs it makes stale. Use when asked to review changes, a branch, a PR, or a commit for conventions, simplicity, or doc drift. Does not hunt correctness bugs; the built-in /code-review does that.
+description: Review a diff for correctness bugs, security holes, the repo's own conventions, over-engineering, and docs it makes stale. Use when asked to review changes, a branch, a PR, or a commit.
 ---
 
 # Code review
@@ -14,6 +14,15 @@ What to review, unless the user names something else: the current branch's chang
 Read the `project-docs` skill first. It says which file owns which rules.
 
 You orchestrate. Spawn every sub-agent below in a single message so they run in parallel. Give each one the diff command from Target, the changed files it covers, and its check's bullets. Each reads its files in full and reports in the Output line format.
+
+**Correctness** (1 sub-agent)
+- Flag code that does the wrong thing: logic errors, off-by-one, unhandled errors or edge cases (empty, null, boundary, concurrent), broken callers of changed functions, wrong API use, and behavior that doesn't match tests, names, or comments.
+- Grep the callers of every changed function and check they still work.
+- Each finding gives the input or state that triggers it and what goes wrong. Drop findings you can't name a trigger for.
+
+**Security** (1 sub-agent)
+- Flag injection (SQL, shell, path, template), missing auth or access checks, untrusted input used without validation, secrets in code or logs, unsafe deserialization, SSRF, XSS, weak crypto, and new dependencies with known risk.
+- Each finding names who can exploit it and how. Drop theoretical findings with no reachable path.
 
 **Conventions** (you, plus 1 sub-agent per topic)
 - Read the root `AGENTS.md` and every nested `AGENTS.md` on the path to each changed file. Check the change against their Rule sections yourself.
@@ -33,6 +42,6 @@ You orchestrate. Spawn every sub-agent below in a single message so they run in 
 
 ## Output
 
-Merge your findings with the sub-agents' and drop duplicates. One line per finding, grouped under Conventions, Simplicity, and Doc drift. Write each as `file:line`, then the problem, then the fix. Leave out empty groups. If there are no findings, say so in one line.
+Merge your findings with the sub-agents' and drop duplicates. One line per finding, grouped under Correctness, Security, Conventions, Simplicity, and Doc drift. Write each as `file:line`, then the problem, then the fix. Leave out empty groups. If there are no findings, say so in one line.
 
 Report only. Don't edit anything unless the user asks.
