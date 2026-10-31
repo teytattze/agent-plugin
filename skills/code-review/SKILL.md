@@ -16,13 +16,10 @@ Read the `project-docs` skill first. It says which file owns which rules.
 You orchestrate. Spawn every sub-agent below in a single message so they run in parallel. Give each one the diff command from Target, the changed files it covers, and its check's bullets. Each reads its files in full and reports in the Output line format.
 
 **Correctness** (1 sub-agent)
-- Flag code that does the wrong thing: logic errors, off-by-one, unhandled errors or edge cases (empty, null, boundary, concurrent), broken callers of changed functions, wrong API use, and behavior that doesn't match tests, names, or comments.
-- Grep the callers of every changed function and check they still work.
-- Each finding gives the input or state that triggers it and what goes wrong. Drop findings you can't name a trigger for.
+- Flag logic errors, unhandled edge cases or errors, and callers the change breaks. Name the input that triggers each.
 
 **Security** (1 sub-agent)
-- Flag injection (SQL, shell, path, template), missing auth or access checks, untrusted input used without validation, secrets in code or logs, unsafe deserialization, SSRF, XSS, weak crypto, and new dependencies with known risk.
-- Each finding names who can exploit it and how. Drop theoretical findings with no reachable path.
+- Flag injection, missing auth, unvalidated untrusted input, and leaked secrets. Name how each is exploited.
 
 **Conventions** (you, plus 1 sub-agent per topic)
 - Read the root `AGENTS.md` and every nested `AGENTS.md` on the path to each changed file. Check the change against their Rule sections yourself.
