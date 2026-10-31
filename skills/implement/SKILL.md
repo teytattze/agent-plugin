@@ -17,6 +17,7 @@ Write the test, make it pass, get it reviewed, clean it up, get it reviewed agai
 ## Spawning a phase
 
 - Spawn a new sub-agent for every phase, including every retry. Never reuse or message an earlier one.
+- Spawn it with `model: "opus"` and `effort: "medium"`.
 - Give it only what it needs: the user's request, the slice, the test command, the relevant file paths, and, on a retry, the findings it must address. Don't pass your own reasoning or earlier agents' explanations.
 - Tell it to report the files it changed and the suite output.
 - After it returns, run the suite yourself and check the result matches what the phase requires before moving on.
