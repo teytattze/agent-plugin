@@ -9,7 +9,7 @@ You orchestrate. Sub-agents design, review, and implement. Every step runs in a 
 
 ## Before starting
 
-- Run the `agent-plugin:explore-codebase` skill with the request as its focus.
+- Run the `agent-plugin:orchestrate-codebase-exploration` skill with the request as its focus.
 - Read the root `AGENTS.md` and any nested ones on the path.
 - Find the test command. Run the suite once. If it's already red, stop and tell the user.
 
